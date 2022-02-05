@@ -1,0 +1,37 @@
+Write an algorithm that determines whether all the elements in a string are unique. 
+You may not convert the string into an array or use array methods to solve this problem. 
+The algorithm should return a boolean.
+
+Input: "hello"
+Output: false
+
+Input: "copyright"
+Output: true
+
+function checkIfRepeats(string) {
+  const newString = string.toLowerCase();
+  for(let i = 0; i < newString.length; i++) {
+    for(let j = i+1; j < newString.length; j++) {
+      if(newString[i] === newString[j]) {
+        return false
+      }
+    }
+  }
+  return true
+}
+
+function checkIfRepeats(string) {
+  const newString = string.toLowerCase();
+  function recursive(stringAgain, j) {
+    if (stringAgain === ""){
+      return true
+    } else if(stringAgain[0] === stringAgain[j]) {
+      return false
+    } else if(j === stringAgain.length-1) {
+      return recursive(stringAgain.slice(1), 1)
+    } else {
+      return recursive(stringAgain, j+1)
+    }
+  }
+  return recursive(newString, 1)
+}
